@@ -1,0 +1,164 @@
+{
+  "languageModel": {
+    "types": [
+      {
+        "name": "Letters",
+        "values": [
+          {
+            "id": null,
+            "name": {
+              "value": "A",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "B",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "C",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "D",
+              "synonyms": []
+            }
+          }
+        ]
+      }
+    ],
+    "intents": [
+      {
+        "name": "AMAZON.CancelIntent",
+        "samples": []
+      },
+      {
+        "name": "AMAZON.HelpIntent",
+        "samples": []
+      },
+      {
+        "name": "AMAZON.StopIntent",
+        "samples": []
+      },
+      {
+        "name": "Efficiency",
+        "samples": [
+          "for the efficiency",
+          "for the status",
+          "what is the efficiency",
+          "what is the status",
+          "what is the efficiency of {GridName}"
+        ],
+        "slots": [
+          {
+            "name": "GridName",
+            "type": "Letters"
+          }
+        ]
+      },
+      {
+        "name": "Noop",
+        "samples": [
+          "no"
+        ],
+        "slots": []
+      },
+      {
+        "name": "Sandstorm",
+        "samples": [
+          "start a sandstorm",
+          "sandstorm",
+          "sandstorm on sector {sector}",
+          "start a sandstorm on {sector}"
+        ],
+        "slots": [
+          {
+            "name": "sector",
+            "type": "Letters"
+          }
+        ]
+      },
+      {
+        "name": "Sectors",
+        "samples": [
+          "for the sector efficiency",
+          "tell me the sector efficiency",
+          "list the sector efficiency",
+          "what are the sector efficiencies"
+        ],
+        "slots": []
+      },
+      {
+        "name": "Sprinklers",
+        "samples": [
+          "turn on the sprinklers",
+          "yes and send me a message",
+          "yes for {Time}",
+          "turn on the sprinklers for {Time}",
+          "turn on the sprinklers for sector {Sector}",
+          "Sector {Sector} sprinklers on "
+        ],
+        "slots": [
+          {
+            "name": "Time",
+            "type": "AMAZON.TIME"
+          },
+          {
+            "name": "Sector",
+            "type": "Letters",
+            "samples": [
+              "Sector {Sector}"
+            ]
+          }
+        ]
+      }
+    ],
+    "invocationName": "solar grid"
+  },
+  "prompts": [
+    {
+      "id": "Elicit.Intent-Sprinklers.IntentSlot-Sector",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "Sure which sector?"
+        }
+      ]
+    }
+  ],
+  "dialog": {
+    "intents": [
+      {
+        "name": "Sprinklers",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": [
+          {
+            "name": "Time",
+            "type": "AMAZON.TIME",
+            "elicitationRequired": false,
+            "confirmationRequired": false,
+            "prompts": {}
+          },
+          {
+            "name": "Sector",
+            "type": "Letters",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicitation": "Elicit.Intent-Sprinklers.IntentSlot-Sector"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
